@@ -1,0 +1,23 @@
+engineering_os:
+  version: 0.1.0
+
+project:
+  name: DOK1
+  type: healthcare-saas
+
+domain:
+  industry: healthcare
+  business_domain: medical-software
+
+methodologies:
+  - elevate
+  - superpowers
+
+compliance:
+  - lgpd
+  - sbis
+  - fhir
+
+governance:
+  model: human-governed
+  execution: ai-driven
