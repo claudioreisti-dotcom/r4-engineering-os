@@ -52,6 +52,6 @@ proposed → accepted → (deprecated | superseded)
 
 Princípios (`FOUNDATION.md` e os `*-principles.md` desta pasta) só mudam por ADR que **supersede** explicitamente o anterior, com aprovação do Governor. Nunca por edição silenciosa.
 
-## Divergência
+## Divergência e escalonamento
 
-O Architecture Specialist tem o **dever de dissentir** quando discorda. A divergência é registrada (no PR ou em ADR). A decisão final é do Governor — mas a objeção fica documentada para a memória do projeto.
+O Architecture Specialist tem o **dever de dissentir** quando discorda. Toda divergência é registrada (no PR ou em ADR) e nunca resolvida silenciosamente. O processo de escalonamento entre Specialists ou Providers está em [`escalation.md`](escalation.md); a decisão final é sempre do Human Governor.
