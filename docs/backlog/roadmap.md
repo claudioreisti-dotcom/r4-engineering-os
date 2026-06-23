@@ -1,46 +1,23 @@
 # Roadmap
 
-## M0 — Foundation
+> Reescrito para refletir a arquitetura congelada (protocol over program; sem runtime/plugin-manager
+> como código — ADR-0002). Substitui o roadmap inicial de Foundation.
 
-- Foundation document
-- Project Genesis
-- Core Model
-- Engineering Manifest
-- Initial ADR
-- Repository bootstrap
+## Concluído
 
-## M1 — Kernel
+- **Foundation** — Genesis, princípios, ADR-0000.
+- **Governance** — papéis, processo, princípios permanentes (Mission 0002.5).
+- **Kernel** — meta-model, ontology, YAML language, manifest model, boundaries (Mission 0003).
+- **Knowledge Engine V1** — load → validate → resolve → generate; CLI; CI (Mission 0004).
+- **Reconciliação** — SSOT em todo o repositório (Mission 0005).
 
-- Manifest schema
-- Runtime model
-- Plugin manager
-- Workforce model
-- Governance model
+## V1 do projeto (em andamento)
 
-## M2 — Specialists
+- **Multi-projeto + DOK1** — provar reuso do Kernel por um projeto downstream (Mission 0006).
 
-- Specialist contract template
-- Initial specialist catalog
-- Claude adapter
-- Codex adapter
+## Pós-V1 (Grow on Demand)
 
-## M3 — Capabilities
-
-- Capability template
-- Feature Development
-- Knowledge Capture
-- Architecture Review
-- Project Bootstrap
-
-## M4 — Automation
-
-- Manifest validator
-- Documentation checks
-- Knowledge gates
-- Project doctor
-
-## M5 — Reference Projects
-
-- DOK1
-- iVet
-- IAReis
+- Ativar tipos dormentes quando houver uso real (`workflow`, `plugin`).
+- Superfícies: CLI distribuível, VS Code Extension, Documentation Portal.
+- Versionamento e migração entre versões do Kernel (ADR-0012) na prática.
+- Mecanismo concreto de Architecture Review por Provider distinto.
