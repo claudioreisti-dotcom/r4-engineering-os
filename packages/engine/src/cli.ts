@@ -5,7 +5,7 @@
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { dirname, join, resolve as resolvePath } from "node:path";
-import { runFromRoot } from "./engine.ts";
+import { runFromRoot, runForProject } from "./engine.ts";
 import type { Issue } from "./types.ts";
 
 function findRoot(start: string): string {
@@ -30,12 +30,17 @@ function main(argv: string[]): number {
   const check = argv.includes("--check");
   const root = findRoot(resolvePath(process.cwd()));
 
+  const projIdx = argv.indexOf("--project");
+  const projectDir = projIdx >= 0 && argv[projIdx + 1] ? resolvePath(argv[projIdx + 1]) : null;
+  const assetsRoot = projectDir ?? root;
+
   if (cmd !== "validate" && cmd !== "generate") {
-    console.error("uso: r4 <validate|generate> [--check]");
+    console.error("uso: r4 <validate|generate> [--check] [--project <dir>]");
     return 2;
   }
 
-  const result = runFromRoot(root);
+  const result = projectDir ? runForProject(root, projectDir) : runFromRoot(root);
+  if (projectDir) console.log(`projeto: ${argv[projIdx + 1]} (Kernel reusado do EOS)`);
 
   if (!result.valid) {
     console.error(`✗ validação falhou: ${result.errors.length} erro(s) em ${result.assets.length} asset(s).`);
@@ -49,7 +54,7 @@ function main(argv: string[]): number {
   // generate
   let drift = 0;
   for (const art of result.artifacts) {
-    const full = join(root, art.path);
+    const full = join(assetsRoot, art.path);
     const current = existsSync(full) ? readFileSync(full, "utf8") : null;
     if (check) {
       if (current !== art.content) {

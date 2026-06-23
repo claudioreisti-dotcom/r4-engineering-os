@@ -1,0 +1,14 @@
+id: capability/dok1-compliance-review
+type: capability
+version: 1.0.0
+lifecycle: active
+relations:
+  - { verb: executed-by, target: specialist/dok1-compliance }
+spec:
+  purpose: Revisar uma feature quanto a LGPD, SBIS e FHIR antes da liberação.
+  inputs:
+    - Feature candidata à liberação.
+  outputs:
+    - Parecer de conformidade e ajustes requeridos.
+  completion_criteria:
+    - Riscos regulatórios endereçados e registrados.
