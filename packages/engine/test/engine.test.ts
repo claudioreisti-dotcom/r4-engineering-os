@@ -2,7 +2,7 @@
 
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { run } from "../src/engine.ts";
+import { run, projectIssues } from "../src/engine.ts";
 import type { Kernel, KnowledgeAsset } from "../src/types.ts";
 
 const kernel: Kernel = {
@@ -65,6 +65,17 @@ test("dangling relation target is an error", () => {
 test("non-canonical verb is an error", () => {
   const r = run(kernel, [asset({ relations: [{ verb: "loves", target: "specialist/a" }] })]);
   assert.ok(r.errors.some((e) => e.message.includes("não canônico")));
+});
+
+test("a project with no manifest is rejected (no false-pass on empty dirs)", () => {
+  assert.equal(projectIssues([]).length, 1);
+  assert.ok(projectIssues([])[0].message.includes("nenhum manifest"));
+});
+
+test("a project with exactly one manifest passes the project invariant", () => {
+  const m: KnowledgeAsset = { id: "manifest/x", type: "manifest", version: "1.0.0", lifecycle: "active", spec: {} };
+  assert.equal(projectIssues([m]).length, 0);
+  assert.equal(projectIssues([m, { ...m, id: "manifest/y" }]).length, 1); // two manifests → error
 });
 
 test("relation not allowed for type is an error", () => {

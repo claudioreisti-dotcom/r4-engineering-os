@@ -11,3 +11,6 @@
 # Node
 node_modules/
 npm-debug.log*
+
+# DOK1 real (cópia local de validação — nunca commitar)
+examples/dok1/
