@@ -17,17 +17,25 @@ A descoberta principal foi maior que o problema inicial: o verdadeiro risco não
 ## Repository map
 
 - `FOUNDATION.md` — princípios fundadores.
-- `engineering.manifest.yaml` — declaração inicial do próprio projeto.
+- `manifest.yaml` — declaração canônica deste projeto (referencia, não redefine).
 - `AGENTS.md` — ponto de entrada para especialistas de IA.
-- `docs/genesis/` — origem e descoberta do produto.
-- `docs/architecture/` — arquitetura conceitual.
-- `docs/decisions/` — decisões arquiteturais.
-- `docs/backlog/` — roadmap e backlog.
-- `templates/` — templates reutilizáveis.
-- `specialists/` — contratos de especialistas.
-- `capabilities/` — capacidades operacionais.
-- `plugins/` — extensões e integrações futuras.
+- `.governance/` — papéis, processo decisório, princípios permanentes.
+- `.missions/` — missões versionadas (memória do projeto).
+- `kernel/` — Kernel legível por máquina (`meta-model.yaml`, `ontology.yaml`).
+- `knowledge/` — conhecimento canônico em YAML (specialists, capabilities, providers).
+- `generated/` — artefatos derivados (gerados pelo Engine; não editar à mão).
+- `packages/engine/` — Knowledge Engine (valida o conhecimento e gera os derivados).
+- `docs/kernel/` — especificação do Kernel; `docs/decisions/` — ADRs; `docs/genesis/` — origem.
+- `templates/`, `plugins/`, `examples/` — templates, extensões futuras e exemplos.
+
+## Knowledge Engine
+
+```bash
+cd packages/engine && npm install
+npm run validate   # valida o conhecimento
+npm run generate   # regenera os artefatos derivados
+```
 
 ## Status
 
-Draft inicial. Este repositório ainda está na fase de Foundation.
+V1 — Kernel especificado e Knowledge Engine funcional, dogfooded no próprio repositório.

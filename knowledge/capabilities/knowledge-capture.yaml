@@ -1,0 +1,14 @@
+id: capability/knowledge-capture
+type: capability
+version: 1.0.0
+lifecycle: active
+relations:
+  - { verb: executed-by, target: specialist/knowledge }
+spec:
+  purpose: Capturar conhecimento estratégico antes que se perca em chats ou contexto implícito.
+  inputs:
+    - Descoberta, decisão ou mudança de direção relevante.
+  outputs:
+    - Journal entry, ADR, especificação ou atualização de arquitetura.
+  completion_criteria:
+    - O conhecimento está versionado no repositório com fonte única.

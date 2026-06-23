@@ -1,0 +1,14 @@
+id: capability/architecture-review
+type: capability
+version: 1.0.0
+lifecycle: active
+relations:
+  - { verb: executed-by, target: specialist/architecture }
+spec:
+  purpose: Avaliar decisões e mudanças quanto à coerência arquitetural e acoplamento.
+  inputs:
+    - Uma proposta, PR ou decisão arquitetural.
+  outputs:
+    - Parecer, ADR ou solicitação de mudanças.
+  completion_criteria:
+    - Riscos e acoplamentos identificados; decisões estruturais têm ADR.

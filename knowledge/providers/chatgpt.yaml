@@ -1,0 +1,9 @@
+id: provider/chatgpt
+type: provider
+version: 1.0.0
+lifecycle: active
+relations:
+  - { verb: satisfies, target: capability/architecture-review }
+spec:
+  vendor: OpenAI
+  description: Provider de execução baseado em LLM. Atual Reviewer Specialist.

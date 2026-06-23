@@ -1,0 +1,26 @@
+id: manifest/r4-engineering-os
+type: manifest
+version: 1.0.0
+lifecycle: active
+relations:
+  - { verb: references, target: specialist/architecture }
+  - { verb: references, target: specialist/implementation }
+  - { verb: references, target: specialist/reviewer }
+  - { verb: references, target: specialist/knowledge }
+  - { verb: references, target: capability/knowledge-capture }
+  - { verb: references, target: capability/project-bootstrap }
+  - { verb: references, target: capability/architecture-review }
+  - { verb: references, target: provider/claude }
+  - { verb: references, target: provider/codex }
+  - { verb: references, target: provider/gemini }
+  - { verb: references, target: provider/chatgpt }
+spec:
+  identity:
+    name: R4 Engineering OS
+    type: engineering-operating-system
+    owner: R4
+    governor: Claudio
+  kernel_version: 1.0.0
+  governance:
+    model: human-governed
+    decision_authority: human

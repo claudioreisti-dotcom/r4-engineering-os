@@ -1,0 +1,44 @@
+# R4 EOS — Meta-Model (machine-readable)
+# Canonical. Mirrors docs/kernel/00-meta-model.md. Frozen by ADR-0003.
+# The Knowledge Engine reads this to validate the envelope of every asset.
+
+meta_model:
+  version: 1.0.0
+
+  # Envelope comum a todo KnowledgeAsset.
+  envelope:
+    required: [id, type, version, lifecycle, spec]
+    optional: [relations]
+
+  # Verbos de Relation canônicos (conjunto fechado).
+  relation_verbs:
+    - owns
+    - executes
+    - executed-by
+    - realizes
+    - realized-by
+    - requires
+    - references
+    - bound-to
+    - contributes
+    - satisfies
+    - supersedes
+    - produces
+    - consumes
+
+  # Estados de Lifecycle e transições permitidas.
+  lifecycle:
+    states: [draft, active, deprecated, superseded]
+    transitions:
+      draft: [active]
+      active: [deprecated, superseded]
+      deprecated: [superseded]
+      superseded: []
+
+  # Invariantes obrigatórias verificadas pelo Engine.
+  constraints:
+    - unique-id            # todo id é único (SSOT)
+    - typed                # type pertence à Ontology
+    - referential-integrity# toda relation aponta para um id existente
+    - valid-verb           # relation usa verbo canônico
+    - valid-lifecycle      # lifecycle é um estado válido

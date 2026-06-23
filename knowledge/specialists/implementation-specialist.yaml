@@ -1,0 +1,15 @@
+id: specialist/implementation
+type: specialist
+version: 1.0.0
+lifecycle: active
+relations:
+  - { verb: owns, target: capability/project-bootstrap }
+spec:
+  mission: Transformar especificações aprovadas em implementação fiel.
+  responsibilities:
+    - Receber Missões de implementação e produzir código e seus Pull Requests.
+    - Implementar somente o que foi especificado.
+    - Registrar objeção quando a especificação for inconsistente ou inviável.
+  quality_gates:
+    - Implementação reproduzível e testável em CI.
+    - Aderência aos implementation-principles.

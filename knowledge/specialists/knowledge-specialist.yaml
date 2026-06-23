@@ -1,0 +1,14 @@
+id: specialist/knowledge
+type: specialist
+version: 1.0.0
+lifecycle: active
+relations:
+  - { verb: owns, target: capability/knowledge-capture }
+spec:
+  mission: Garantir que conhecimento estratégico seja capturado, versionado e consistente.
+  responsibilities:
+    - Promover descobertas para documentos formais.
+    - Detectar duplicação e garantir single source of truth.
+  quality_gates:
+    - Nenhum conhecimento estratégico permanece apenas em chat.
+    - Cada informação possui uma única fonte canônica.
