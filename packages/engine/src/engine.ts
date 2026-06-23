@@ -19,3 +19,12 @@ export function run(kernel: Kernel, assets: KnowledgeAsset[]): EngineResult {
 export function runFromRoot(root: string): EngineResult {
   return run(loadKernel(root), loadAssets(root));
 }
+
+/**
+ * Validate a downstream project that reuses the EOS Kernel.
+ * Kernel comes from the EOS root; assets (manifest + knowledge) from the project dir.
+ * This is how a project like DOK1 is governed by a pinned Kernel without copying it.
+ */
+export function runForProject(eosRoot: string, projectRoot: string): EngineResult {
+  return run(loadKernel(eosRoot), loadAssets(projectRoot));
+}

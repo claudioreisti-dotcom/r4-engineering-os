@@ -1,0 +1,13 @@
+id: specialist/dok1-compliance
+type: specialist
+version: 1.0.0
+lifecycle: active
+relations:
+  - { verb: owns, target: capability/dok1-compliance-review }
+spec:
+  mission: Assegurar conformidade do DOK1 com LGPD, SBIS e FHIR.
+  responsibilities:
+    - Revisar features quanto a privacidade e requisitos regulatórios.
+    - Registrar decisões de conformidade como conhecimento versionado.
+  quality_gates:
+    - Nenhuma feature sensível é liberada sem revisão de conformidade.

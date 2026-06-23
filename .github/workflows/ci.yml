@@ -23,5 +23,7 @@ jobs:
         run: npm test
       - name: Validate knowledge
         run: npm run validate
+      - name: Validate DOK1 example (downstream, reuses Kernel)
+        run: node src/cli.ts validate --project ../../examples/dok1
       - name: Check generated docs are in sync
         run: npm run check
