@@ -1,9 +1,0 @@
-id: provider/dok1-codex
-type: provider
-version: 1.0.0
-lifecycle: active
-relations:
-  - { verb: satisfies, target: capability/dok1-compliance-review }
-spec:
-  vendor: OpenAI
-  description: Provider de execução do DOK1 baseado em LLM.
