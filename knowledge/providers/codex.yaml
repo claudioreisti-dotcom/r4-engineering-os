@@ -1,0 +1,8 @@
+id: provider/codex
+type: provider
+version: 1.0.0
+lifecycle: active
+relations: []
+spec:
+  vendor: OpenAI
+  description: Provider de execução baseado em LLM.

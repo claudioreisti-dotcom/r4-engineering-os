@@ -1,0 +1,15 @@
+id: capability/project-bootstrap
+type: capability
+version: 1.0.0
+lifecycle: active
+relations:
+  - { verb: executed-by, target: specialist/implementation }
+  - { verb: consumes, target: manifest/r4-engineering-os }
+spec:
+  purpose: Inicializar um projeto governado pelo R4 EOS a partir de um Engineering Manifest.
+  inputs:
+    - Um manifest válido.
+  outputs:
+    - Estrutura base, knowledge assets iniciais, workforce e capabilities habilitadas.
+  completion_criteria:
+    - O manifest valida contra o Kernel e o projeto é navegável sem contexto de chat.

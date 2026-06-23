@@ -1,0 +1,8 @@
+id: provider/gemini
+type: provider
+version: 1.0.0
+lifecycle: active
+relations: []
+spec:
+  vendor: Google
+  description: Provider de execução baseado em LLM.

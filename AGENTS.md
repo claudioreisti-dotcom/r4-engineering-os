@@ -9,9 +9,11 @@ Não assuma conhecimento vindo de chats anteriores.
 Leia primeiro:
 
 1. `FOUNDATION.md`
-2. `engineering.manifest.yaml`
-3. `docs/genesis/0001-project-genesis.md`
-4. `docs/architecture/core-model.md`
+2. `.governance/` (papéis, processo, princípios)
+3. `docs/kernel/` (meta-model, ontology, manifest model, boundaries)
+4. `kernel/` e `knowledge/` (Kernel e conhecimento canônico em YAML)
+5. `manifest.yaml` (declaração deste projeto)
+6. `docs/genesis/0001-project-genesis.md` (origem, histórico)
 
 ## Modelo operacional
 
