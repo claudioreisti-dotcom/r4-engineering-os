@@ -70,13 +70,17 @@ Cada entidade abaixo declara: **propósito**, **responsabilidade**, **relações
 - **Relações:** `executed-by` → Specialist; `realized-by` → Workflow (0..1); `produces`/`consumes` → KnowledgeAsset.
 - **Ciclo de vida:** `draft → active → deprecated`.
 
-### Workflow *(dormente)*
+### Workflow *(ativo desde v1.2.0 — ADR-0021)*
 
-- **Propósito:** definir o procedimento ordenado que realiza uma Capability (o *como*).
-- **Responsabilidade:** descrever passos; não duplicar a definição da Capability.
-- **Relações:** `realizes` → Capability.
+- **Propósito:** representar um processo ordenado e seus pontos de decisão (o *como*),
+  **estritamente descritivo** — reutiliza capabilities existentes nos passos.
+- **Responsabilidade:** descrever a sequência e os gates; não duplicar a definição da Capability.
+- **Relações:** `realizes` → Capability; `references` → Capability (usada em um passo).
+- **`spec.steps`:** lista ordenada; cada passo é uma referência a capability **ou** um `gate`
+  com ator explícito (`human` | `automated`). Ordem intrínseca à lista.
+- **Não-objetivos (ADR-0021):** sem execução, sem controle de fluxo (condicionais/loops/
+  paralelismo/retries/timeouts), não-orquestração. O Engine **nunca** executa workflows.
 - **Ciclo de vida:** `draft → active → deprecated`.
-- **Estado:** existe na Ontology mas **não terá instâncias nem campos congelados** até haver uso real (Grow on Demand). Sua estrutura interna é deliberadamente não especificada nesta Sprint.
 
 ### Provider
 

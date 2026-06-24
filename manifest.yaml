@@ -17,13 +17,14 @@ relations:
   - { verb: references, target: provider/gemini }
   - { verb: references, target: provider/chatgpt }
   - { verb: references, target: component/engine }
+  - { verb: references, target: workflow/eos-governed-change }
 spec:
   identity:
     name: R4 Engineering OS
     type: engineering-operating-system
     owner: R4
     governor: Claudio
-  kernel_version: 1.1.0
+  kernel_version: 1.2.0
   governance:
     model: human-governed
     decision_authority: human
