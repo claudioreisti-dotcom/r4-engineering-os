@@ -4,10 +4,12 @@
 #
 # v1.1.0 (ADR-0020): activates `component`, `resource`, `principle` to represent real
 # projects (modules, infrastructure, inviolable rules) — additive, non-breaking.
-# Meta-model (primitives + relation verbs) unchanged.
+# v1.2.0 (ADR-0021): activates `workflow` as a strictly DESCRIPTIVE concept (ordered steps
+# + explicit gates; reuses existing capabilities). No execution semantics; the Engine never
+# executes workflows. No control flow. Additive, non-breaking. Meta-model unchanged.
 
 ontology:
-  version: 1.1.0
+  version: 1.2.0
 
   types:
     manifest:
@@ -52,7 +54,12 @@ ontology:
       allowed_relations: [supersedes]
       status: active
 
+    workflow:
+      purpose: Processo ordenado e seus gates (descritivo; reutiliza capabilities). Sem execução.
+      required_spec: [steps]
+      allowed_relations: [realizes, references]
+      status: active
+
     # Dormentes (Grow on Demand) — declarados, sem spec congelado.
-    workflow:  { purpose: O procedimento (o como).,              status: dormant }
     plugin:    { purpose: Bundle de extensão de conhecimento.,    status: dormant }
     decision:  { purpose: Decisão arquitetural registrada (ADR)., status: dormant }

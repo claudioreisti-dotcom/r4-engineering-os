@@ -1,0 +1,12 @@
+id: workflow/eos-governed-change
+type: workflow
+version: 1.0.0
+lifecycle: active
+relations:
+  - { verb: realizes, target: capability/architecture-review }
+  - { verb: references, target: capability/architecture-review }
+spec:
+  # Processo descritivo de uma mudança governada no R4 EOS. Sem semântica de execução.
+  steps:
+    - { ref: capability/architecture-review }   # Architecture Specialist revisa/propõe (PR)
+    - { gate: human-approval, actor: human }     # Human Governor aprova o merge

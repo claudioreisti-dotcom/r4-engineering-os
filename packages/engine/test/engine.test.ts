@@ -9,7 +9,7 @@ const kernel: Kernel = {
   metaModel: {
     version: "1.0.0",
     envelope: { required: ["id", "type", "version", "lifecycle", "spec"], optional: ["relations"] },
-    relation_verbs: ["owns", "executed-by", "satisfies", "references", "bound-to", "requires", "supersedes"],
+    relation_verbs: ["owns", "executed-by", "satisfies", "references", "bound-to", "requires", "supersedes", "realizes"],
     lifecycle: { states: ["draft", "active", "deprecated", "superseded"], transitions: {} },
     constraints: [],
   },
@@ -21,7 +21,8 @@ const kernel: Kernel = {
       component: { purpose: "x", required_spec: ["purpose", "kind"], allowed_relations: ["requires", "references"], status: "active" },
       resource: { purpose: "x", required_spec: ["kind"], allowed_relations: ["requires"], status: "active" },
       principle: { purpose: "x", required_spec: ["statement"], allowed_relations: ["supersedes"], status: "active" },
-      workflow: { purpose: "x", status: "dormant" },
+      workflow: { purpose: "x", required_spec: ["steps"], allowed_relations: ["realizes", "references"], status: "active" },
+      plugin: { purpose: "x", status: "dormant" },
     },
   },
 };
@@ -51,7 +52,7 @@ test("unknown type is an error", () => {
 });
 
 test("dormant type cannot be instantiated", () => {
-  const r = run(kernel, [asset({ id: "workflow/w", type: "workflow", spec: {} })]);
+  const r = run(kernel, [asset({ id: "plugin/p", type: "plugin", spec: {} })]);
   assert.ok(r.errors.some((e) => e.message.includes("dormente")));
 });
 
@@ -76,6 +77,22 @@ test("v1.1 types (component, resource, principle) validate via the data-driven e
   const principle = asset({ id: "principle/anti-enum", type: "principle", spec: { statement: "não usar enum" } });
   const r = run(kernel, [component, resource, principle]);
   assert.equal(r.valid, true, JSON.stringify(r.errors));
+});
+
+test("workflow (descriptive) validates: ordered steps + realizes/references, no execution semantics", () => {
+  const cap = asset({ id: "capability/c", type: "capability", spec: { purpose: "p" }, relations: [] });
+  const wf = asset({
+    id: "workflow/pipe", type: "workflow",
+    spec: { steps: [{ ref: "capability/c" }, { gate: "human-approval", actor: "human" }] },
+    relations: [{ verb: "realizes", target: "capability/c" }, { verb: "references", target: "capability/c" }],
+  });
+  const r = run(kernel, [wf, cap]);
+  assert.equal(r.valid, true, JSON.stringify(r.errors));
+});
+
+test("workflow missing required 'steps' is an error", () => {
+  const r = run(kernel, [asset({ id: "workflow/w", type: "workflow", spec: {} })]);
+  assert.ok(r.errors.some((e) => e.message.includes("steps")));
 });
 
 test("component missing required 'kind' is an error", () => {
