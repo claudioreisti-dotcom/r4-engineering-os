@@ -1,42 +1,121 @@
 ---
+
 mission: "0007"
-title: Validate R4 EOS against the real DOK1
+title: DOK1 Real Validation
 status: delivered
 governor: Claudio
-specialist: Architecture Specialist (Claude)
-reviewer: waived (delegação explícita do Governor)
----
+specialist: Architecture Specialist
+reviewer: Architecture Review
+-----------------------------
 
-# Mission 0007 — Validate against the real DOK1
-
-## Status
-
-Approved (autonomia) → Delivered
+# Mission 0007 — DOK1 Real Validation
 
 ## Context
 
-O Governor colocou uma cópia local do DOK1 real em `examples/dok1` (não versionada) para
-validar o R4 EOS contra um projeto de verdade. Regra: adaptar o Engine se preciso; nunca
-adaptar o DOK1.
+O R4 Engineering OS possui um Kernel funcional e um Knowledge Engine operacional.
 
-## Mission
+Até o momento, toda a validação foi realizada utilizando o próprio repositório do R4 EOS.
 
-Validar o R4 EOS contra o DOK1 real e registrar honestamente o resultado.
+Ainda não foi validada a hipótese mais importante do produto:
 
-## Resultado
+**O R4 EOS deve ser capaz de compreender um projeto real sem exigir adaptações prévias.**
 
-- **Achado:** o DOK1 real não possui conhecimento no formato R4 EOS (sua verdade está em
-  Markdown/`.specs`). O Engine não pode governá-lo sem um bootstrap. Ver journal 0001.
-- **Correção de Engine (genérica, não específica do DOK1):** projeto deve declarar um
-  manifest (ADR-0018). Eliminado o falso positivo em diretórios vazios.
-- **Higiene de repositório:** removida a fabricação sintética antiga de `examples/dok1`;
-  `examples/dok1/` reservado e gitignored como slot do DOK1 real; teste de integração
-  reescrito para usar um projeto temporário (sem depender de pasta commitada).
+O DOK1 será utilizado como primeiro projeto de validação.
 
-## Constraints honradas
+---
 
-DOK1 não foi alterado nem versionado. Nenhuma adaptação específica do DOK1 no Engine.
+# Objective
 
-## Outcome
+Validar o comportamento do R4 EOS diante de um projeto real existente.
 
-Entregue como Pull Request da branch `mission/0007-dok1-real-validation`.
+O objetivo desta missão não é adaptar o DOK1.
+
+O objetivo é descobrir se o R4 EOS consegue compreendê-lo.
+
+---
+
+# Scope
+
+Durante esta missão o DOK1 deve permanecer inalterado.
+
+Nenhum arquivo deverá ser criado.
+
+Nenhum manifesto deverá ser adicionado.
+
+Nenhuma estrutura deverá ser modificada.
+
+---
+
+# Deliverables
+
+## Phase 1 — Discovery
+
+Ler completamente o projeto.
+
+Identificar:
+
+* stack tecnológica;
+* arquitetura;
+* estrutura do monorepo;
+* convenções;
+* ferramentas;
+* pipelines;
+* documentação existente.
+
+---
+
+## Phase 2 — Assessment
+
+Avaliar:
+
+* quais informações o R4 EOS já consegue extrair;
+* quais ainda não consegue;
+* quais hipóteses do produto foram confirmadas;
+* quais limitações ficaram evidentes.
+
+---
+
+## Phase 3 — Gap Analysis
+
+Registrar:
+
+* funcionalidades ausentes;
+* limitações do Engine;
+* limitações do Manifest;
+* limitações da Ontologia;
+* melhorias necessárias.
+
+Nenhuma correção deverá ser implementada nesta missão.
+
+---
+
+# Constraints
+
+Não modificar o DOK1.
+
+Não criar manifest.
+
+Não criar knowledge.
+
+Não adaptar o projeto.
+
+Não implementar workarounds.
+
+O objetivo é validar o produto, não fazer a validação passar.
+
+---
+
+# Success Criteria
+
+A missão será considerada concluída quando existir um relatório claro respondendo:
+
+* O que o R4 EOS conseguiu compreender?
+* O que ainda não consegue compreender?
+* O que precisa evoluir para governar este projeto?
+
+---
+
+# Outcome
+
+Relatório entregue em `docs/journal/0002-dok1-discovery-report.md`. DOK1 não foi alterado;
+nenhuma correção foi implementada. As lacunas alimentam a Mission 0008 (adoção genérica).
