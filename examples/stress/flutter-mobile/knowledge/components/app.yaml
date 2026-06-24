@@ -1,0 +1,9 @@
+id: component/flutter-mobile-app
+type: component
+version: 1.0.0
+lifecycle: active
+relations:
+  - { verb: requires, target: resource/flutter-mobile-push }
+spec:
+  purpose: App Flutter para iOS e Android (lojas de aplicativos).
+  kind: app

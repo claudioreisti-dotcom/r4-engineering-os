@@ -1,0 +1,12 @@
+id: manifest/rust-cli
+type: manifest
+version: 1.0.0
+lifecycle: active
+relations:
+  - { verb: references, target: component/rust-cli-core }
+  - { verb: references, target: principle/rust-cli-no-panic }
+  - { verb: references, target: specialist/rust-cli-maintainer }
+spec:
+  identity: { name: rust-cli, type: cli-tool, owner: ACME, governor: Dev }
+  kernel_version: 1.1.0
+  governance: { model: human-governed, decision_authority: human }

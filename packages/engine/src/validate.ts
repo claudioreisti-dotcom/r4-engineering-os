@@ -14,6 +14,12 @@ export function validate(kernel: Kernel, assets: KnowledgeAsset[]): Issue[] {
     const src = asset?._source;
     const err = (message: string) => errors.push({ level: "error", assetId: id, source: src, message });
 
+    // Malformed YAML (untrusted input): report and skip further checks for this file.
+    if (asset?._parseError) {
+      err(`YAML inválido: ${asset._parseError}`);
+      continue;
+    }
+
     // Envelope — required fields.
     for (const field of metaModel.envelope.required) {
       if ((asset as unknown as Record<string, unknown>)?.[field] === undefined) err(`envelope: campo obrigatório ausente: '${field}'`);

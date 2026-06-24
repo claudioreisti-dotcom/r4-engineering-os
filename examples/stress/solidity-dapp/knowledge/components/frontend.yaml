@@ -1,0 +1,9 @@
+id: component/solidity-dapp-frontend
+type: component
+version: 1.0.0
+lifecycle: active
+relations:
+  - { verb: requires, target: component/solidity-dapp-contracts }
+spec:
+  purpose: Frontend web3 que interage com os contratos.
+  kind: app

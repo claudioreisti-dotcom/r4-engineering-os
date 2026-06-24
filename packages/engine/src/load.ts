@@ -34,8 +34,14 @@ export function loadAssets(root: string): KnowledgeAsset[] {
   files.push(...walkYaml(join(root, "knowledge")));
 
   return files.map((file) => {
-    const asset = readYaml(file) as KnowledgeAsset;
-    asset._source = relative(root, file);
-    return asset;
+    const source = relative(root, file);
+    try {
+      const asset = (readYaml(file) ?? {}) as KnowledgeAsset;
+      asset._source = source;
+      return asset;
+    } catch (err) {
+      // Untrusted project input: a malformed file becomes a reported error, never a crash.
+      return { _source: source, _parseError: (err as Error).message.split("\n")[0] } as KnowledgeAsset;
+    }
   });
 }

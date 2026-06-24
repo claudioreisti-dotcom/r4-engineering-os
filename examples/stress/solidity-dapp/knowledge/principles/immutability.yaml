@@ -1,0 +1,7 @@
+id: principle/solidity-dapp-immutability
+type: principle
+version: 1.0.0
+lifecycle: active
+relations: []
+spec:
+  statement: Código implantado é imutável; upgrades só via padrão de proxy auditado.
