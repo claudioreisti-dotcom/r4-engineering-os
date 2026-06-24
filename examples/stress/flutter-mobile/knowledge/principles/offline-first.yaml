@@ -1,0 +1,7 @@
+id: principle/flutter-mobile-offline-first
+type: principle
+version: 1.0.0
+lifecycle: active
+relations: []
+spec:
+  statement: A UI funciona offline; sincronização é eventual e idempotente.

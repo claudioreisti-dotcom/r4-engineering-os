@@ -36,6 +36,25 @@ test("a downstream project validates reusing the EOS Kernel", () => {
   }
 });
 
+test("malformed YAML is reported as an error, not a crash", () => {
+  const dir = mkdtempSync(join(tmpdir(), "r4-bad-"));
+  try {
+    writeFileSync(join(dir, "manifest.yaml"),
+      "id: manifest/x\ntype: manifest\nversion: 1.0.0\nlifecycle: active\n" +
+      "spec:\n  identity: { name: X, type: t, owner: o, governor: g }\n  kernel_version: 1.1.0\n" +
+      "  governance: { model: human-governed, decision_authority: human }\n");
+    mkdirSync(join(dir, "knowledge", "principles"), { recursive: true });
+    // colon-in-scalar → invalid compact mapping
+    writeFileSync(join(dir, "knowledge", "principles", "bad.yaml"),
+      "id: principle/x\ntype: principle\nversion: 1.0.0\nlifecycle: active\nspec:\n  statement: foo: bar baz\n");
+    const r = runForProject(repoRoot, dir);
+    assert.equal(r.valid, false);
+    assert.ok(r.errors.some((e) => e.message.includes("YAML inválido")));
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
 test("a directory with no R4 EOS manifest is rejected (no false-pass)", () => {
   const dir = mkdtempSync(join(tmpdir(), "r4-empty-"));
   try {

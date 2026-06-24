@@ -1,0 +1,12 @@
+id: manifest/flutter-mobile
+type: manifest
+version: 1.0.0
+lifecycle: active
+relations:
+  - { verb: references, target: component/flutter-mobile-app }
+  - { verb: references, target: resource/flutter-mobile-push }
+  - { verb: references, target: principle/flutter-mobile-offline-first }
+spec:
+  identity: { name: flutter-mobile, type: mobile-app, owner: ACME, governor: Dev }
+  kernel_version: 1.1.0
+  governance: { model: human-governed, decision_authority: human }

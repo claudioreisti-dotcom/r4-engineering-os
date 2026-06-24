@@ -1,0 +1,9 @@
+id: component/embedded-firmware-rtos-app
+type: component
+version: 1.0.0
+lifecycle: active
+relations:
+  - { verb: requires, target: resource/embedded-firmware-sensor }
+spec:
+  purpose: Aplicação firmware sobre RTOS (C), controle de tempo real.
+  kind: firmware-module

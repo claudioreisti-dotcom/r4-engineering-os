@@ -1,0 +1,7 @@
+id: principle/ml-pipeline-reproducible
+type: principle
+version: 1.0.0
+lifecycle: active
+relations: []
+spec:
+  statement: "Todo treino é reproduzível: dados, seed e versão de modelo versionados."

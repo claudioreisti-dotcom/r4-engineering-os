@@ -1,0 +1,7 @@
+id: resource/ml-pipeline-warehouse
+type: resource
+version: 1.0.0
+lifecycle: active
+relations: []
+spec:
+  kind: data-warehouse

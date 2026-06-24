@@ -1,0 +1,7 @@
+id: principle/embedded-firmware-realtime
+type: principle
+version: 1.0.0
+lifecycle: active
+relations: []
+spec:
+  statement: Deadlines de tempo real são invioláveis; nenhuma alocação dinâmica no hot path.

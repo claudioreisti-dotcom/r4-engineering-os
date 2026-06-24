@@ -1,0 +1,12 @@
+id: manifest/embedded-firmware
+type: manifest
+version: 1.0.0
+lifecycle: active
+relations:
+  - { verb: references, target: component/embedded-firmware-rtos-app }
+  - { verb: references, target: resource/embedded-firmware-sensor }
+  - { verb: references, target: principle/embedded-firmware-realtime }
+spec:
+  identity: { name: embedded-firmware, type: embedded-firmware, owner: ACME, governor: Dev }
+  kernel_version: 1.1.0
+  governance: { model: human-governed, decision_authority: human }

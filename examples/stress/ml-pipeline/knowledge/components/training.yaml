@@ -1,0 +1,10 @@
+id: component/ml-pipeline-training
+type: component
+version: 1.0.0
+lifecycle: active
+relations:
+  - { verb: requires, target: resource/ml-pipeline-warehouse }
+  - { verb: requires, target: resource/ml-pipeline-scheduler }
+spec:
+  purpose: Job batch de treino de modelo (Python/Spark).
+  kind: batch-job

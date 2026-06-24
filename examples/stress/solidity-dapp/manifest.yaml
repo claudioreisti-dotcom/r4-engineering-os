@@ -1,0 +1,13 @@
+id: manifest/solidity-dapp
+type: manifest
+version: 1.0.0
+lifecycle: active
+relations:
+  - { verb: references, target: component/solidity-dapp-contracts }
+  - { verb: references, target: component/solidity-dapp-frontend }
+  - { verb: references, target: resource/solidity-dapp-rpc }
+  - { verb: references, target: principle/solidity-dapp-immutability }
+spec:
+  identity: { name: solidity-dapp, type: smart-contract-dapp, owner: ACME, governor: Dev }
+  kernel_version: 1.1.0
+  governance: { model: human-governed, decision_authority: human }

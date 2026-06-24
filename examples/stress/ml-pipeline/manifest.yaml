@@ -1,0 +1,13 @@
+id: manifest/ml-pipeline
+type: manifest
+version: 1.0.0
+lifecycle: active
+relations:
+  - { verb: references, target: component/ml-pipeline-training }
+  - { verb: references, target: resource/ml-pipeline-warehouse }
+  - { verb: references, target: resource/ml-pipeline-scheduler }
+  - { verb: references, target: principle/ml-pipeline-reproducible }
+spec:
+  identity: { name: ml-pipeline, type: data-pipeline, owner: ACME, governor: Dev }
+  kernel_version: 1.1.0
+  governance: { model: human-governed, decision_authority: human }

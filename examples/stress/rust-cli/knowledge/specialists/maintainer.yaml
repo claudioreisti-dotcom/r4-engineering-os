@@ -1,0 +1,9 @@
+id: specialist/rust-cli-maintainer
+type: specialist
+version: 1.0.0
+lifecycle: active
+relations: []
+spec:
+  mission: Manter o CLI com confiabilidade e compatibilidade de flags.
+  responsibilities:
+    - Revisar mudanças de interface de linha de comando.

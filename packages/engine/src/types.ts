@@ -15,6 +15,8 @@ export interface KnowledgeAsset {
   spec: Record<string, unknown>;
   /** Source file path, attached on load (not part of the canonical envelope). */
   _source?: string;
+  /** Set when the YAML failed to parse (untrusted project input). */
+  _parseError?: string;
 }
 
 export interface MetaModel {

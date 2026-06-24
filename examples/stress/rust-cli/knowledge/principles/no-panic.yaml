@@ -1,0 +1,7 @@
+id: principle/rust-cli-no-panic
+type: principle
+version: 1.0.0
+lifecycle: active
+relations: []
+spec:
+  statement: Nenhum caminho de código em produção pode dar panic; erros são Result.

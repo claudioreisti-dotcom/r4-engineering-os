@@ -1,0 +1,9 @@
+id: component/solidity-dapp-contracts
+type: component
+version: 1.0.0
+lifecycle: active
+relations:
+  - { verb: requires, target: resource/solidity-dapp-rpc }
+spec:
+  purpose: Contratos inteligentes Solidity (EVM).
+  kind: smart-contracts
