@@ -7,9 +7,11 @@ relations:
   - { verb: references, target: specialist/implementation }
   - { verb: references, target: specialist/reviewer }
   - { verb: references, target: specialist/knowledge }
+  - { verb: references, target: specialist/adoption }
   - { verb: references, target: capability/knowledge-capture }
   - { verb: references, target: capability/project-bootstrap }
   - { verb: references, target: capability/architecture-review }
+  - { verb: references, target: capability/existing-project-adoption }
   - { verb: references, target: provider/claude }
   - { verb: references, target: provider/codex }
   - { verb: references, target: provider/gemini }

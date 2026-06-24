@@ -1,0 +1,15 @@
+id: capability/existing-project-adoption
+type: capability
+version: 1.0.0
+lifecycle: active
+relations:
+  - { verb: executed-by, target: specialist/adoption }
+spec:
+  purpose: Incorporar qualquer projeto existente ao R4 EOS por um processo reproduzível.
+  inputs:
+    - Um repositório existente (somente leitura).
+  outputs:
+    - Project Profile (fatos), Governance Proposal e, após aprovação, bootstrap via PR.
+  completion_criteria:
+    - Discovery → Profile → Proposal → Human Approval → Bootstrap concluídos.
+    - O projeto não foi adaptado; o R4 EOS é que foi adaptado para compreendê-lo.
