@@ -6,6 +6,7 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { dirname, join, resolve as resolvePath } from "node:path";
 import { runFromRoot, runForProject } from "./engine.ts";
+import { discover, profileToMarkdown } from "./discover.ts";
 import type { Issue } from "./types.ts";
 
 function findRoot(start: string): string {
@@ -30,12 +31,19 @@ function main(argv: string[]): number {
   const check = argv.includes("--check");
   const root = findRoot(resolvePath(process.cwd()));
 
+  // discover: read-only structural profile of any project dir (Mission 0008).
+  if (cmd === "discover") {
+    const dir = argv[1] && !argv[1].startsWith("--") ? resolvePath(argv[1]) : root;
+    console.log(profileToMarkdown(discover(dir)));
+    return 0;
+  }
+
   const projIdx = argv.indexOf("--project");
   const projectDir = projIdx >= 0 && argv[projIdx + 1] ? resolvePath(argv[projIdx + 1]) : null;
   const assetsRoot = projectDir ?? root;
 
   if (cmd !== "validate" && cmd !== "generate") {
-    console.error("uso: r4 <validate|generate> [--check] [--project <dir>]");
+    console.error("uso: r4 <validate|generate|discover> [--check] [--project <dir>]");
     return 2;
   }
 
