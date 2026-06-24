@@ -1,10 +1,13 @@
 # R4 EOS — Ontology (machine-readable)
 # Canonical catalogue of KnowledgeAsset types. Mirrors docs/kernel/01-ontology.md.
-# V1 activates four types (ADR-0016); others remain dormant.
 # The Knowledge Engine reads `required_spec` and `allowed_relations` per type.
+#
+# v1.1.0 (ADR-0020): activates `component`, `resource`, `principle` to represent real
+# projects (modules, infrastructure, inviolable rules) — additive, non-breaking.
+# Meta-model (primitives + relation verbs) unchanged.
 
 ontology:
-  version: 1.0.0
+  version: 1.1.0
 
   types:
     manifest:
@@ -31,8 +34,25 @@ ontology:
       allowed_relations: [satisfies]
       status: active
 
+    component:
+      purpose: Módulo, app, serviço ou package do projeto.
+      required_spec: [purpose, kind]
+      allowed_relations: [requires, references]
+      status: active
+
+    resource:
+      purpose: Recurso de infraestrutura do qual o projeto depende (db, cache, fila, storage).
+      required_spec: [kind]
+      allowed_relations: [requires]
+      status: active
+
+    principle:
+      purpose: Invariante de produto ou arquitetura (regra inviolável).
+      required_spec: [statement]
+      allowed_relations: [supersedes]
+      status: active
+
     # Dormentes (Grow on Demand) — declarados, sem spec congelado.
-    workflow:   { purpose: O procedimento (o como).,                status: dormant }
-    plugin:     { purpose: Bundle de extensão de conhecimento.,      status: dormant }
-    principle:  { purpose: Invariante de produto ou arquitetura.,    status: dormant }
-    decision:   { purpose: Decisão arquitetural registrada (ADR).,   status: dormant }
+    workflow:  { purpose: O procedimento (o como).,              status: dormant }
+    plugin:    { purpose: Bundle de extensão de conhecimento.,    status: dormant }
+    decision:  { purpose: Decisão arquitetural registrada (ADR)., status: dormant }

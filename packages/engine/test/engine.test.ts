@@ -9,7 +9,7 @@ const kernel: Kernel = {
   metaModel: {
     version: "1.0.0",
     envelope: { required: ["id", "type", "version", "lifecycle", "spec"], optional: ["relations"] },
-    relation_verbs: ["owns", "executed-by", "satisfies", "references", "bound-to"],
+    relation_verbs: ["owns", "executed-by", "satisfies", "references", "bound-to", "requires", "supersedes"],
     lifecycle: { states: ["draft", "active", "deprecated", "superseded"], transitions: {} },
     constraints: [],
   },
@@ -18,6 +18,9 @@ const kernel: Kernel = {
     types: {
       specialist: { purpose: "x", required_spec: ["mission"], allowed_relations: ["owns", "bound-to"], status: "active" },
       capability: { purpose: "x", required_spec: ["purpose"], allowed_relations: ["executed-by"], status: "active" },
+      component: { purpose: "x", required_spec: ["purpose", "kind"], allowed_relations: ["requires", "references"], status: "active" },
+      resource: { purpose: "x", required_spec: ["kind"], allowed_relations: ["requires"], status: "active" },
+      principle: { purpose: "x", required_spec: ["statement"], allowed_relations: ["supersedes"], status: "active" },
       workflow: { purpose: "x", status: "dormant" },
     },
   },
@@ -65,6 +68,19 @@ test("dangling relation target is an error", () => {
 test("non-canonical verb is an error", () => {
   const r = run(kernel, [asset({ relations: [{ verb: "loves", target: "specialist/a" }] })]);
   assert.ok(r.errors.some((e) => e.message.includes("não canônico")));
+});
+
+test("v1.1 types (component, resource, principle) validate via the data-driven engine", () => {
+  const component = asset({ id: "component/api", type: "component", spec: { purpose: "p", kind: "app" }, relations: [{ verb: "requires", target: "resource/db" }] });
+  const resource = asset({ id: "resource/db", type: "resource", spec: { kind: "database" } });
+  const principle = asset({ id: "principle/anti-enum", type: "principle", spec: { statement: "não usar enum" } });
+  const r = run(kernel, [component, resource, principle]);
+  assert.equal(r.valid, true, JSON.stringify(r.errors));
+});
+
+test("component missing required 'kind' is an error", () => {
+  const r = run(kernel, [asset({ id: "component/x", type: "component", spec: { purpose: "p" } })]);
+  assert.ok(r.errors.some((e) => e.message.includes("kind")));
 });
 
 test("a project with no manifest is rejected (no false-pass on empty dirs)", () => {

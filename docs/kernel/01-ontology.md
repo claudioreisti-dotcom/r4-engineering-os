@@ -85,7 +85,28 @@ Cada entidade abaixo declara: **propósito**, **responsabilidade**, **relações
 - **Relações:** `satisfies` → Capability.
 - **Ciclo de vida:** `draft → active → deprecated`.
 
-### Plugin
+### Component *(ativo desde v1.1.0)*
+
+- **Propósito:** módulo, app, serviço ou package do projeto (o *de quê é feito*).
+- **Responsabilidade:** representar uma unidade estrutural do projeto.
+- **Relações:** `requires` → Component | Resource; `references`.
+- **Ciclo de vida:** `draft → active → deprecated`.
+
+### Resource *(ativo desde v1.1.0)*
+
+- **Propósito:** recurso de infraestrutura do qual o projeto depende (db, cache, fila, storage).
+- **Responsabilidade:** declarar a dependência de infraestrutura; **nunca** guarda segredos.
+- **Relações:** `requires`.
+- **Ciclo de vida:** `draft → active → deprecated`.
+
+### Principle *(ativo desde v1.1.0)*
+
+- **Propósito:** invariante de produto ou arquitetura (regra inviolável).
+- **Responsabilidade:** servir de fundamento estável para decisões.
+- **Relações:** `supersedes`.
+- **Ciclo de vida:** `active → superseded` (raramente; via Decision).
+
+### Plugin *(dormente)*
 
 - **Propósito:** empacotar uma extensão que amplia o que o sistema sabe/faz.
 - **Responsabilidade:** declarar o que contribui e sua compatibilidade (`requires` Kernel).

@@ -1,0 +1,8 @@
+id: component/engine
+type: component
+version: 1.0.0
+lifecycle: active
+relations: []
+spec:
+  purpose: O Knowledge Engine — valida o conhecimento declarativo e gera artefatos derivados.
+  kind: package
