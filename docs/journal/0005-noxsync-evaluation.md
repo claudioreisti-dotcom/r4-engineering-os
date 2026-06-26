@@ -45,3 +45,13 @@ O noxsync **cabe nos tipos ativos** sem exigir mudança:
 
 noxsync confirma que a ontologia v1.2.0 generaliza para um arquétipo novo (integração/event-
 sync, pré-código) sem mudança. Os dois sinais acima alimentam a decisão futura de evolução.
+
+## Decisão / Próximo passo (2026-06-26)
+
+**Manter o noxsync em "avaliado" — sem bootstrap por enquanto.** Motivo: é pré-código;
+adotar agora modelaria intenção (components/resources inexistentes) → churn alto e valor
+marginal baixo (o conhecimento dele já está estruturado nos próprios docs).
+
+**Gatilho de adoção:** revisitar e fazer o bootstrap **quando o noxsync tiver código** (ou
+quando a estrutura de components estabilizar), para o R4 EOS governar a construção real, não
+a especulação. Até lá, a fase de observação é carregada pelo suporte-r4 (uso real).
